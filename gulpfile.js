@@ -21,6 +21,7 @@ var path = require('path');
 var fs = require('fs');
 var glob = require('glob');
 var historyApiFallback = require('connect-history-api-fallback');
+var less = require('gulp-less');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -33,6 +34,20 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
+
+var compileLessTask = function (srcs) {
+  return gulp.src(srcs.map(function(src) {
+      return path.join('app', src);
+    }))
+    .pipe(less())
+    .pipe(gulp.dest('.tmp/'))
+    .pipe(gulp.dest('dist'));
+};
+
+// Compile .less files
+gulp.task('compile-less', function() {  
+  return compileLessTask(['**/styles/*.less']);
+});
 
 var styleTask = function (stylesPath, srcs) {
   return gulp.src(srcs.map(function(src) {
@@ -47,7 +62,7 @@ var styleTask = function (stylesPath, srcs) {
 };
 
 // Compile and Automatically Prefix Stylesheets
-gulp.task('styles', function () {
+gulp.task('styles', ['compile-less'], function () {
   return styleTask('styles', ['**/*.css']);
 });
 
@@ -204,7 +219,10 @@ gulp.task('serve', ['styles', 'elements', 'images'], function () {
   });
 
   gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
+  gulp.watch([
+    'app/**/styles/**/*.less', 
+    'app/styles/**/*.css']
+    , ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
   gulp.watch(['app/{scripts,elements}/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);

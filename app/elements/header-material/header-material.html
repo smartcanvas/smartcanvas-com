@@ -11,13 +11,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="header-material">
+  <link rel="import" type="css" href="styles/main.css">
   <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+    <div id="header-hello">Hello from <span>{{foo}}</span></div>
   </template>
   <script>
   (function() {
