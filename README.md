@@ -1,4 +1,4 @@
-## Alan Turing
+## Smart Canvas
 
 ### Included out of the box:
 
@@ -50,7 +50,7 @@ This lets you run `gulp` and `bower` from the command line.
 4)  Install local `npm` and `bower` dependencies.
 
 ```sh
-cd alan-turing && npm install && bower install
+cd smartcanvas-com && npm install && bower install
 ```
 
 This installs the element sets (Paper, Iron, Platinum) and tools required to build and serve the app.
