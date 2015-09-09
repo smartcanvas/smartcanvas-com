@@ -17,9 +17,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+  <link rel="import" type="css" href="styles/main.css">
 
 <dom-module id="smartc-header-main">
-  <link rel="import" type="css" href="styles/main.css">
+  <!--<link rel="import" type="css" href="styles/main.css">-->
   <template>
     <style>
       :host {
@@ -27,15 +30,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <!-- Main Area -->
-    <paper-header-panel mode="waterfall">
+    <paper-header-panel mode="waterfall" tall-class="medium-tall">
 
       <!-- Main Toolbar -->
-      <paper-toolbar id="mainToolbar">
+      <paper-toolbar id="mainToolbar" >
 
         <div class="app-name" style="width: 300px">Polymer Starter Kit</div>
 
-        <div class="flex">
-          <paper-tabs id="scrollableTabs" selected="0">
+        <div id="scrollableTabsContainer" class="flex layout horizontal end-justified">
+          <paper-tabs id="scrollableTabs" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" scrollable>
 
             <paper-tab>Highlights</paper-tab>
             <paper-tab>CI&T People</paper-tab>
@@ -47,11 +50,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-tabs>
         </div>
 
+        <span class="space-min"></span>
         <paper-icon-button icon="search"></paper-icon-button>
-
+        <span class="space-min"></span>
         <content select="[paper-drawer-toggle]"></content>
       </paper-toolbar>
 
+      <paper-toolbar id="mainToolbarSecndLine" hidden style="padding: 0px">
+        <div id="scrollableTabsContainerScndLine" class="flex">
+          <paper-tabs id="scrollableTabsScndLine" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" scrollable>
+
+            <paper-tab>Highlights</paper-tab>
+            <paper-tab>CI&T People</paper-tab>
+            <paper-tab>CI&T News</paper-tab>
+            <paper-tab>Google</paper-tab>
+            <paper-tab>Geeks</paper-tab>
+            <paper-tab>Ask a question</paper-tab>
+
+          </paper-tabs>
+        </div>
+      </paper-toolbar>
+      <span>{{selectedMenuTab}}</span>
       <content select="div"></content>
     </paper-header-panel>
   </template>
@@ -66,6 +85,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Polymer.IronResizableBehavior
       ],
       
+      properties: {
+        
+        selectedMenuTab: {
+          type: Number,
+          value: 0,
+          observer: "selectedMenuTabChanged"
+        }
+      },
       
       listeners: {
         'iron-resize': '_onIronResize'
@@ -73,30 +100,66 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       ready: function () {
         
-        this.$.scrollableTabs.$.tabsContent.classList.remove('horizontal');
+        this.finalWidth = 0;
+
+        var self = this;
+
+        window.addEventListener('load', function(e){
+
+          self._adjustMenuSizeAndLocation();
+        });        
       },
 
       attached: function () {
       },
       
+      _adjustMenuSizeAndLocation: function() {
+        
+        var tmpFinalWidth = $(this.$.scrollableTabs.$.tabsContent).width();
+
+        if ((this.finalWidth == 0) || (tmpFinalWidth > this.finalWidth))
+        {    
+          this.finalWidth = tmpFinalWidth + 10;
+
+          //console.log("this.finalWidth: " + this.finalWidth);
+          
+          $(this.$.scrollableTabs).find("paper-icon-button").hide();
+          
+          $(this.$.scrollableTabs).width(this.finalWidth);
+        }
+        
+        var tabsContainerWidth = this.$.scrollableTabs.parentElement.clientWidth;
+
+        if (tabsContainerWidth <= this.finalWidth) {
+          
+          //console.log("Need to break line !!! / tabsContainerWidth: " + tabsContainerWidth + "/ finalWidth: " + this.finalWidth);
+
+          $(this.$.scrollableTabs).hide();
+          this.$.mainToolbarSecndLine.removeAttribute("hidden");
+        } else {
+          
+          //console.log("Need to put on header !!! / tabsContainerWidth: " + tabsContainerWidth + "/ finalWidth: " + this.finalWidth);
+          
+          this.$.mainToolbarSecndLine.setAttribute("hidden", null);
+          $(this.$.scrollableTabs).show();
+        }
+
+        this.$.scrollableTabs._onResize();
+        this.$.scrollableTabsScndLine._onResize();
+
+        $(this.$.scrollableTabs.selectedItem).focus();
+        $(this.$.scrollableTabsScndLine.selectedItem).focus();
+      },
+      
       _onIronResize: function() {
 
-//         var tabsContainerWidth = this.$.scrollableTabs.parentElement.clientWidth;
-//         var tabsContentWidth = this.$.scrollableTabs.$.tabsContent.clientWidth;
-// 
-//         if (tabsContainerWidth <= tabsContentWidth) {
-//           
-//           console.log("Need to break line !!!");
-//         } else {
-//           
-//           console.log("Need to put on header !!!");
-//         }
-
-        // console.log("this.$.scrollableTabs.parentElement.offsetWidth: " + this.$.scrollableTabs.parentElement.offsetWidth);
-        // console.log("this.$.scrollableTabs.offsetWidth: " + this.$.scrollableTabs.offsetWidth);
-        // console.log("this.$.scrollableTabs.$.tabsContent.offsetWidth: " + this.$.scrollableTabs.$.tabsContent.offsetWidth);
-        // console.log("this.$.scrollableTabs.$.tabsContent.clientWidth: " + this.$.scrollableTabs.$.tabsContent.clientWidth);
-      }
+        this._adjustMenuSizeAndLocation();
+      },    
+      
+      selectedMenuTabChanged: function (current, previous){
+        
+        this.fire('menu-item-selected', {currentSelectedIndex: current, previousSelectedIndex: previous});
+      },
     });
   })();
   </script>

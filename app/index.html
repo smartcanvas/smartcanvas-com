@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
   <!-- build:css styles/main.css -->
-  <!--<link rel="stylesheet" href="styles/main.css">-->
+  <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
@@ -64,15 +64,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <smartc-side-menu-user drawer fixed></smartc-side-menu-user>
 
-      <smartc-header-main main>
+      <smartc-header-main on-menu-item-selected="onMenuItemSelected" main>
         <paper-avatar-button id="paperToggle" avatar="https://lh5.googleusercontent.com/-tlQ1LE9IdgI/AAAAAAAAAAI/AAAAAAAAA1Q/5Ypy_appsWw/photo.jpg?sz=50" paper-drawer-toggle></paper-avatar-button>
         
         <!-- Main Content -->
         <div class="content">
-          
+                    
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
             <section data-route="home">
+              <span>Selected Menu: <span>{{selectedMenuItem}}</span></span>
+
               <paper-material elevation="1">
                 <p class="paper-font-subhead">You now have:</p>
 
