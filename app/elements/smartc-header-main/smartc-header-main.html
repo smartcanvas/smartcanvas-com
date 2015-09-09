@@ -1,0 +1,103 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+
+<dom-module id="smartc-header-main">
+  <link rel="import" type="css" href="styles/main.css">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <!-- Main Area -->
+    <paper-header-panel mode="waterfall">
+
+      <!-- Main Toolbar -->
+      <paper-toolbar id="mainToolbar">
+
+        <div class="app-name" style="width: 300px">Polymer Starter Kit</div>
+
+        <div class="flex">
+          <paper-tabs id="scrollableTabs" selected="0">
+
+            <paper-tab>Highlights</paper-tab>
+            <paper-tab>CI&T People</paper-tab>
+            <paper-tab>CI&T News</paper-tab>
+            <paper-tab>Google</paper-tab>
+            <paper-tab>Geeks</paper-tab>
+            <paper-tab>Ask a question</paper-tab>
+
+          </paper-tabs>
+        </div>
+
+        <paper-icon-button icon="search"></paper-icon-button>
+
+        <content select="[paper-drawer-toggle]"></content>
+      </paper-toolbar>
+
+      <content select="div"></content>
+    </paper-header-panel>
+  </template>
+  <script>
+    (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-header-main',
+      
+      behaviors: [
+        Polymer.IronResizableBehavior
+      ],
+      
+      
+      listeners: {
+        'iron-resize': '_onIronResize'
+      },
+      
+      ready: function () {
+        
+        this.$.scrollableTabs.$.tabsContent.classList.remove('horizontal');
+      },
+
+      attached: function () {
+      },
+      
+      _onIronResize: function() {
+
+//         var tabsContainerWidth = this.$.scrollableTabs.parentElement.clientWidth;
+//         var tabsContentWidth = this.$.scrollableTabs.$.tabsContent.clientWidth;
+// 
+//         if (tabsContainerWidth <= tabsContentWidth) {
+//           
+//           console.log("Need to break line !!!");
+//         } else {
+//           
+//           console.log("Need to put on header !!!");
+//         }
+
+        // console.log("this.$.scrollableTabs.parentElement.offsetWidth: " + this.$.scrollableTabs.parentElement.offsetWidth);
+        // console.log("this.$.scrollableTabs.offsetWidth: " + this.$.scrollableTabs.offsetWidth);
+        // console.log("this.$.scrollableTabs.$.tabsContent.offsetWidth: " + this.$.scrollableTabs.$.tabsContent.offsetWidth);
+        // console.log("this.$.scrollableTabs.$.tabsContent.clientWidth: " + this.$.scrollableTabs.$.tabsContent.clientWidth);
+      }
+    });
+  })();
+  </script>
+</dom-module>

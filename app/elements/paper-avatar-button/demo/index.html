@@ -8,25 +8,21 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
 <html>
-
   <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>Elements Test Runner</title>
-    <meta charset="UTF-8">
-
-    <script src="../../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-    <script src="../../bower_components/web-component-tester/browser.js"></script>
+    <title>paper-avatar-button Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../paper-avatar-button.html">
   </head>
-
   <body>
 
-    <script>
-      WCT.loadSuites(['smartc-header-main-basic.html', 'smartc-side-menu-user-basic.html']);
-    </script>
+    <p>An example of <code>&lt;paper-avatar-button&gt;</code>:</p>
 
+    <paper-avatar-button avatar="https://i.imgur.com/WohrKf9.png"></paper-avatar-button>
+    <paper-avatar-button avatar="https://i.imgur.com/WohrKf9.png" size="64px"></paper-avatar-button>
+    <paper-avatar-button avatar="https://i.imgur.com/WohrKf9.png" size="64px" start-elevated></paper-avatar-button>
 
   </body>
-
 </html>

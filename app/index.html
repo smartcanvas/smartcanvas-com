@@ -42,11 +42,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
   <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <!--<link rel="stylesheet" href="styles/main.css">-->
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="bower_components/jquery/jquery.min.js"></script>
   <!-- endbuild -->
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
@@ -58,156 +59,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
 
   <template is="dom-bind" id="app">
-    
-    <header-material></header-material>
-    <!-- TOAST -->
-    <paper-toast id="toast1" text="Your draft has been discarded."></paper-toast>
+          
+    <paper-drawer-panel id="paperDrawerPanel" force-narrow right-drawer>
 
-    <paper-toast id="toast2" text="Connection timed out. Showing limited messages.">
-      <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="console.log('RETRY')">Retry</span>
-    </paper-toast>
+      <smartc-side-menu-user drawer fixed></smartc-side-menu-user>
 
-    <!-- FAB -->
-    <paper-fab icon="add"></paper-fab>
+      <smartc-header-main main>
+        <paper-avatar-button id="paperToggle" avatar="https://lh5.googleusercontent.com/-tlQ1LE9IdgI/AAAAAAAAAAI/AAAAAAAAA1Q/5Ypy_appsWw/photo.jpg?sz=50" paper-drawer-toggle></paper-avatar-button>
+        
+        <!-- Main Content -->
+        <div class="content">
+          
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
-    <!-- DRAWER -->
+            <section data-route="home">
+              <paper-material elevation="1">
+                <p class="paper-font-subhead">You now have:</p>
 
+                <p class="paper-font-body2">Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
+              </paper-material>
 
-    <!-- HEADER -->
-    <paper-header-panel mode="waterfall">
-      <div class="paper-header">
-        <div class="layout horizontal">
-          <div>LOGO</div>
-          <div class="flex"></div>
-          <div>SEARCH</div>
-          <div>
-            <paper-icon-button icon="menu"></paper-icon-button>
-          </div>
+              <paper-material elevation="1">
+                <p class="paper-font-body2">This is another card.</p>
+              </paper-material>
+
+              <paper-material elevation="1" class="paper-font-body2">
+                <h1 id="license">License</h1>
+                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
+                <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
+                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+                <ul>
+                <li>Redistributions of source code must retain the above copyright
+                notice, this list of conditions and the following disclaimer.</li>
+                <li>Redistributions in binary form must reproduce the above
+                copyright notice, this list of conditions and the following disclaimer
+                in the documentation and/or other materials provided with the
+                distribution.</li>
+                <li>Neither the name of Google Inc. nor the names of its
+                contributors may be used to endorse or promote products derived from
+                this software without specific prior written permission.</li>
+                </ul>
+                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+              </paper-material>
+
+            </section>
+
+          </iron-pages>
+          
         </div>
-
-        <div>
-          <paper-tabs selected="0" scrollable>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB asdhjask dkjas djash d2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-            <paper-tab>TAB 1</paper-tab>
-            <paper-tab>TAB 2</paper-tab>
-            <paper-tab>TAB 3</paper-tab>
-
-          </paper-tabs>
-        </div>
-      </div>
-      <div class="content fit">
-
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br><br>
-
-        <paper-button raised id="toast-button1">Discard Draft</paper-button>
-        <br><br>
-
-        <paper-button raised id="toast-button2">Get Messages</paper-button>
-        <br><br>
-
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-        content fits 100% below the header<br>
-      </div>
-    </paper-header-panel>
+      </smartc-header-main>
+      
+   </paper-drawer-panel>
 
   </template>
-
-
 
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>

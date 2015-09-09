@@ -1,0 +1,105 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../button-behaviors/button-behavior.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <paper-avatar-button></paper-avatar-button>
+
+@demo
+-->
+<dom-module id="paper-avatar-button">
+
+  <style>
+    :host {
+      display: inline-block;
+      box-sizing: border-box;
+      border-radius: 50%;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      outline: none;
+    }
+    :host([disabled]) {
+      background-color: #888;
+      pointer-events: none;
+    }
+    :host([active]), :host([pressed]) {
+      background-color: #3367D6;
+      box-shadow: inset 0 3px 5px rgba(0,0,0,.2);
+    }
+    iron-icon {
+      width: 32px;
+      height: 32px;
+    }
+    iron-icon, iron-icon::shadow img, paper-material {
+      border-radius: 50%;
+    }
+  </style>
+
+  <template>
+
+    <paper-material elevation="[[_elevation]]">
+      <iron-icon id="icon" src="{{avatar}}"></iron-icon>
+      <paper-ripple></paper-ripple>
+    </paper-material>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'paper-avatar-button',
+    behaviors: [Polymer.buttonBehavior],
+
+    properties: {
+
+      /**
+       * The avatar to display.
+       *
+       *
+       */
+      avatar: {
+        type: String,
+        reflectToAttribute: true
+      },
+
+      size: {
+        type: String,
+        reflectToAttribute: true,
+        value: '32px',
+        observer: 'setSize'
+      },
+
+      startElevated: {
+        type: Boolean,
+        reflectToAttribute: true,
+        value: false
+      }
+
+    },
+
+    ready: function() {
+      if(this.startElevated) {
+        this._elevation = 1;
+      }
+    },
+
+    setSize: function(size) {
+      this.$.icon.style.width = this.size;
+      this.$.icon.style.height = this.size;
+    }
+
+  });
+
+</script>

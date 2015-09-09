@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-behaviors/iron-button-state.html">
+<link rel="import" href="../../bower_components/iron-behaviors/iron-control-state.html">
+
+<script>
+
+  /** @polymerBehavior */
+  Polymer.buttonBehaviorImpl = {
+
+    properties: {
+      _elevation: {
+        type: Number,
+        value: 0
+      },
+
+      _over: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    hostAttributes: {
+      role: 'button',
+      tabindex: '0'
+    },
+
+    observers: [
+      '_calculateElevation(focused, disabled, active, pressed, receivedFocusFromKeyboard, _over)'
+    ],
+
+    listeners: {
+      'mouseover': '_overHandler',
+      'mouseout': '_outHandler'
+    },
+
+    _overHandler: function() {
+      this._over = true;
+    },
+
+    _outHandler: function () {
+      this._over = false;
+    },
+
+    _calculateElevation: function() {
+      if (this._over) {
+        this._elevation = 1;
+      } else if (this.active || this.pressed) {
+        this._elevation = 4;
+      } else if (this.receivedFocusFromKeyboard || this.focused) {
+        this._elevation = 3;
+      } else if (this.disabled || !this._over) {
+        this._elevation = 0;
+      }
+    }
+
+  };
+
+  Polymer.buttonBehavior = [
+    Polymer.IronButtonState,
+    Polymer.IronControlState,
+    Polymer.buttonBehaviorImpl
+  ]
+
+</script>

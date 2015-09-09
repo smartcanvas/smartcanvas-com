@@ -8,25 +8,19 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
 <html>
+<head>
 
-  <head>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>Elements Test Runner</title>
-    <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="../../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-    <script src="../../bower_components/web-component-tester/browser.js"></script>
-  </head>
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../iron-component-page/iron-component-page.html">
 
-  <body>
+</head>
+<body>
 
-    <script>
-      WCT.loadSuites(['smartc-header-main-basic.html', 'smartc-side-menu-user-basic.html']);
-    </script>
+  <iron-component-page src="button-behavior.html"></iron-component-page>
 
-
-  </body>
-
+</body>
 </html>
