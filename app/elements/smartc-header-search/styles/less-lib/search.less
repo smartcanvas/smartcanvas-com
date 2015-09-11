@@ -1,0 +1,135 @@
+/*------------------------------------*\
+    $INDEX
+\*------------------------------------*/
+
+/**
+ * INDEX............................Welcome!
+ * SEARCH...........................SEARCH STYLES
+ */
+
+
+
+
+
+
+
+/*------------------------------------*\
+    $SEARCH
+\*------------------------------------*/
+.sc-search{
+    display: inline-block;
+    *display: inline;
+    *zoom:1;
+    vertical-align: top;
+    margin: @search-margin;
+
+    @media only screen and (min-width : @template-media-query-mobile-min) and (max-width : @template-media-query-mobile-max) {
+        margin: @search-mobile-margin;
+    }
+}
+
+
+    .sc-search{
+        border: @search-input-border;
+        border-bottom: @search-input-border-bottom;
+        background-color: @search-container-background-color;
+
+        @media only screen and (min-width : @template-media-query-mobile-min) and (max-width : @template-media-query-mobile-phone-max) {
+            background-color: @search-container-phone-background-color;
+            border: none;
+        }
+
+        @media only screen and (min-width : @template-media-query-mobile-phone-max) and (max-width : @template-media-query-mobile-max) {
+            background-color: @search-container-tablet-background-color;
+        }
+        
+        .sc-search-input{
+            display: inline-block;
+            *display: inline;
+            *zoom:1;
+            vertical-align: top;
+            border: 0;
+            outline: 0;
+            color: @search-input-font-color;
+            font: @search-input-font;
+            padding: @search-input-padding;
+            width: @search-input-width;
+            background-color: @search-container-background-color;
+            
+            &::-webkit-input-placeholder {
+                color: @search-input-placeholder-color;
+                font-weight: @search-input-placeholder-weight;
+            }
+
+            &:-moz-placeholder { /* Firefox 18- */
+                color: @search-input-placeholder-color;
+                font-weight: @search-input-placeholder-weight;
+            }
+
+            &::-moz-placeholder {  /* Firefox 19+ */
+                color: @search-input-placeholder-color;
+                font-weight: @search-input-placeholder-weight;
+            }
+
+            &:-ms-input-placeholder {  
+                color: @search-input-placeholder-color;
+                font-weight: @search-input-placeholder-weight;
+            }
+            
+            @media only screen and (min-width : @template-media-query-mobile-min) and (max-width : @template-media-query-mobile-phone-max) {            
+                color: @search-container-phone-color;
+                background-color: @search-container-phone-background-color;
+                padding: @search-input-mobile-padding;
+                width: @search-mobile-input-phone-width;
+                
+                &::-webkit-input-placeholder {
+	                color: @search-input-phone-placeholder-color;
+	            }
+	
+	            &:-moz-placeholder { /* Firefox 18- */
+	                color: @search-input-phone-placeholder-color;
+	            }
+	
+	            &::-moz-placeholder {  /* Firefox 19+ */
+	                color: @search-input-phone-placeholder-color;
+	            }
+	
+	            &:-ms-input-placeholder {  
+	                color: @search-input-phone-placeholder-color;
+	            }
+            }
+
+            @media only screen and (min-width : @template-media-query-mobile-phone-max) and (max-width : @template-media-query-mobile-max) {
+                background-color: @search-container-tablet-background-color;
+                width: @search-mobile-input-tablet-width;                
+            }
+
+        }   
+
+        .sc-search-button,
+        .sc-search-voice{
+            display: inline-block;
+            *display: inline;
+            *zoom:1;
+            width: 40px;
+            height: 38px;
+            margin: @search-button-margin;
+
+            .sc-search-button-icon,
+            .sc-search-voice-icon{
+                display: block;
+                margin: 8px 0 0 8px;
+                color: @search-button-color;
+                font-size: @search-button-size;
+                text-decoration: none;
+
+                @media only screen and (min-width : @template-media-query-mobile-min) and (max-width : @template-media-query-mobile-phone-max) {
+                    margin: 13px 0 0 13px;
+                    color: @search-mobile-button-color;
+                }
+            }
+        }
+
+    }
+
+

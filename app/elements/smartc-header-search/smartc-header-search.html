@@ -1,0 +1,91 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="smartc-header-search">
+  <!--<link rel="import" type="css" href="styles/old-main.css">-->
+  <link rel="import" type="css" href="styles/main.css">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      :host paper-toolbar {
+        --paper-toolbar-background: #FFFFFF;
+        --paper-toolbar-color: #000000;
+      }
+    </style>
+    <!--<div class="sc-header-material sc-header-material-effect">
+      <div class="sc-header-search" layout="row" layout-align="start center">
+          
+          <div class="corner-icon-holder">
+              <a class="arrow-back" href="#" layout-align="center center">
+                  <i class="icon-arrow-back icon-ic_arrow_back_48px"></i>
+              </a>
+          </div>s
+  
+          <div flex>
+              <div layout="row" layout-align="center center">
+                  <input class="search-input" placeholder="{{searchPlaceholder}}">
+              </div>
+          </div>
+  
+          <div class="corner-icon-holder">
+              <a class="search search-ripple" href="#" layout-align="center center">
+                  <i class="icon-search icon-ic_search_48px"></i>
+                  <span class="icon-ripple"></span>
+              </a>
+          </div>
+  
+      </div>
+    </div>-->
+    <paper-toolbar id="toolbarSearch" class="sc-header-search">
+      <paper-icon-button icon="arrow-back" on-click="onBackClick"></paper-icon-button>
+      <div class="flex">
+        <div class="flex layout horizontal center-center">
+          <input class="flex search-input" placeholder="Search">
+        </div>
+      </div>
+      <paper-icon-button icon="search" on-click="onSearchClick"></paper-icon-button>
+    </paper-toolbar>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-header-search',
+
+      properties: {
+      },
+
+      onBackClick: function() {
+        
+        this.fire('header-search-back-requested', {});
+      },
+      
+      onSearchClick: function() {
+        
+      },
+    });
+  })();
+  </script>
+</dom-module>

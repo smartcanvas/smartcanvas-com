@@ -18,45 +18,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-
-  <link rel="import" type="css" href="styles/main.css">
+<link rel="import" href="../../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../smartc-header-search/smartc-header-search.html">
 
 <dom-module id="smartc-header-main">
-  <!--<link rel="import" type="css" href="styles/main.css">-->
+  <link rel="import" type="css" href="styles/main.css">
+  <!--<link rel="import" type="css" href="../smartc-header-search/styles/main.css">-->
   <template>
     <style>
       :host {
         display: block;
       }
+      
+      paper-toggle-button.toggle-pin {
+        --paper-toggle-button-checked-bar-color:  var(--paper-light-blue-100);
+        --paper-toggle-button-checked-button-color:  var(--paper-light-blue-700);
+        --paper-toggle-button-checked-ink-color: var(--paper-light-blue-100);
+        /*--paper-toggle-button-unchecked-bar-color:  var(--paper-light-blue-900);
+        --paper-toggle-button-unchecked-button-color:  var(--paper-light-blue-900);
+        --paper-toggle-button-unchecked-ink-color: var(--paper-light-blue-900);*/
+      }
     </style>
     <!-- Main Area -->
-    <paper-header-panel mode="waterfall" tall-class="medium-tall">
+    <paper-header-panel id="headerPanel" mode="waterfall" tall-class="medium-tall">
 
       <!-- Main Toolbar -->
-      <paper-toolbar id="mainToolbar" >
+      <paper-toolbar id="mainToolbar" class="top">
 
-        <div class="app-name" style="width: 300px">Polymer Starter Kit</div>
+          <div class="app-name" style="width: 300px">Polymer Starter Kit</div>
+  
+          <div id="scrollableTabsContainer" class="flex layout horizontal end-justified">
+            <paper-tabs id="scrollableTabs" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" scrollable>
+  
+              <paper-tab>Highlights</paper-tab>
+              <paper-tab>CI&T People</paper-tab>
+              <paper-tab>CI&T News</paper-tab>
+              <paper-tab>Google</paper-tab>
+              <paper-tab>Geeks</paper-tab>
+              <paper-tab>Ask a question</paper-tab>
+  
+            </paper-tabs>
+          </div>
 
-        <div id="scrollableTabsContainer" class="flex layout horizontal end-justified">
-          <paper-tabs id="scrollableTabs" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" scrollable>
+          <span class="space-min"></span>
+  
+          <paper-toggle-button class="toggle-pin"></paper-toggle-button>
+  
+          <span class="space-min"></span>
 
-            <paper-tab>Highlights</paper-tab>
-            <paper-tab>CI&T People</paper-tab>
-            <paper-tab>CI&T News</paper-tab>
-            <paper-tab>Google</paper-tab>
-            <paper-tab>Geeks</paper-tab>
-            <paper-tab>Ask a question</paper-tab>
+          <paper-icon-button icon="search" on-click="onSearchClick"></paper-icon-button>
 
-          </paper-tabs>
-        </div>
+          <span class="space-min"></span>
 
-        <span class="space-min"></span>
-        <paper-icon-button icon="search"></paper-icon-button>
-        <span class="space-min"></span>
-        <content select="[paper-drawer-toggle]"></content>
+          <content select="[paper-drawer-toggle]"></content>
       </paper-toolbar>
-
-      <paper-toolbar id="mainToolbarSecndLine" hidden style="padding: 0px">
+  
+      <paper-toolbar id="mainToolbarSecndLine" hidden class="bottom" style="padding: 0px">
         <div id="scrollableTabsContainerScndLine" class="flex">
           <paper-tabs id="scrollableTabsScndLine" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" scrollable>
 
@@ -70,6 +87,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-tabs>
         </div>
       </paper-toolbar>
+
+      <smartc-header-search on-header-search-back-requested="onCloseSearchHeader"></smartc-header-search>
+    
       <content select="div"></content>
     </paper-header-panel>
   </template>
@@ -158,6 +178,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       selectedMenuTabChanged: function (current, previous){
         
         this.fire('menu-item-selected', {currentSelectedIndex: current, previousSelectedIndex: previous});
+      },
+      
+      onSearchClick: function () {
+        
+        this.$.headerPanel.classList.add("sc-header-material-effect");
+        console.log("[onSearchClick]");
+      },
+      
+      onCloseSearchHeader: function () {
+        
+        this.$.headerPanel.classList.remove("sc-header-material-effect");
+        console.log("[onCloseSearchHeader]");
       },
     });
   })();

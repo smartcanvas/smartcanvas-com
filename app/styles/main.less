@@ -7,6 +7,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 @import "less-lib/primitives";
+@import "less-lib/default-variables";
+@import "less-lib/mixins";
 
 /*
 Layout styles
@@ -14,6 +16,10 @@ Layout styles
 
 .space-min {
   width: 12px
+}
+
+body {
+  background-color: @sc-background-color;
 }
 
 /*
@@ -24,4 +30,40 @@ smartc-header-main
 
 .smartc-header-main paper-tabs.not-display-invisible-nav paper-icon-button.not-visible {
   display: none;
+}
+
+.sc-header-material-effect {
+	.sc-header-search {
+        
+        opacity: 1;
+        
+        .transform( translateY(0) );
+        .transform( translate3d(0, 0, 0) );
+// 
+//         .transition( opacity 0.5s ease 0.2s );
+
+        .corner-icon-holder{
+            .arrow-back{
+                opacity: 1;
+
+                // .transform( translateX(0) );
+                // .transform( translate3d(0, 0, 0) );
+                .transition( all 0.4s ease 0.3s );
+            }
+
+            .search{
+                opacity: 1;
+
+                // .transform( translateX(64px) );
+                // .transform( translate3d(64px, 0, 0) );
+
+                @media only screen and (max-width : 600px) {
+                    // .transform( translateX(50px) );
+                    // .transform( translate3d(50px, 0, 0) );
+                }
+
+                // .transition( all 0.4s ease 0.3s );
+            }
+        }
+    }
 }

@@ -1,0 +1,79 @@
+@import "../../../styles/less-lib/default-variables";
+@import "../../../styles/less-lib/mixins";
+
+/*------------------------------------*\
+    $EFFECT
+\*------------------------------------*/
+.top {
+    // -webkit-transform: translate3d(0,0,0);
+    // -moz-transform: translate3d(0,0,0);
+    // -ms-transform: translate3d(0,0,0);
+    // -o-transform: translate3d(0,0,0);
+    // transition: all .4s ease;
+}
+
+.bottom {
+    
+//     .transition( opacity 0.2s ease .4s );
+//     .transition( height 0.2s ease .4s );
+// 
+//     .transform( translateY(0px) );
+//     .transform( translate3d(0, 0, 0) );
+ }
+ 
+.sc-header-material-effect {
+
+//     .search,
+//     .arrow-back,
+//     .user-menu{
+//         .icon-search,
+//         .icon-arrow-back,
+//         .icon-user-menu{
+//             color: @sc-header-material-search-open-icon-color;
+//         }
+// 
+//         .icon-ripple {
+//             background: @sc-header-material-search-open-icon-ripple;
+//         }
+// 
+//     }
+
+    .top{
+        background-color: @sc-header-material-search-color;
+        opacity: 0;
+
+        // .transition( opacity 0.2s ease );
+        
+        /* FIXING BUG ON SAFARI */
+//         -webkit-transition: opacity 0s ease;
+// 
+//         .transform( translateY(-64px) );
+//         .transform( translate3d(0, -64px, 0) );
+//         
+//         .transition( all 0.4s ease );
+    }
+
+    .bottom{
+        background-color: @sc-header-material-search-color;
+
+        .bottom-menu-arrow-left,
+        .bottom-menu-arrow-right{
+            opacity: 0;
+
+            // .transition( opacity 0.2s ease );
+        }
+
+        opacity: 0;
+        height: 0;
+
+//         .transition( opacity 0.2s ease .2s );
+//         .transition( height 0.2s ease );
+// 
+//         .transform( translateY(-64px) );
+//         .transform( translate3d(0, -64px, 0) );
+        
+        // .transition( all 0.4s ease );
+    }
+
+    
+}
