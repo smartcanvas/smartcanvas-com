@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </paper-toolbar>
 
-      <smartc-header-search on-header-search-back-requested="onCloseSearchHeader"></smartc-header-search>
+      <smartc-header-search id="smartcHeaderSearch" on-header-search-back-requested="onCloseSearchHeader"></smartc-header-search>
     
       <content select="div"></content>
     </paper-header-panel>
@@ -184,6 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         this.$.headerPanel.classList.add("sc-header-material-effect");
         console.log("[onSearchClick]");
+        this.$.smartcHeaderSearch.$.inputSearch.focus();
       },
       
       onCloseSearchHeader: function () {
