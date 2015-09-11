@@ -1,0 +1,39 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="smartc-grid-card">
+  <link rel="import" type="css" href="styles/main.css">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+<div class="sc-card-fixed-height" ng-click="cardClicked($event, link)">
+<div class="sc-card-fixed-height-photo ng-isolate-scope" ng-if="::photoCard" blocks="::blocks" double-first="::doubleFirst" card="::card" link="::link"><a class="sc-card-fixed-photo-link" ng-href="/card/this-cards-was-created-in-quot-ask-a-question-quot" href="/card/this-cards-was-created-in-quot-ask-a-question-quot"><div class="sc-card-fixed-photo-photo-wrapper"><!-- ngIf: isImageWidescreen --><!-- ngIf: !isImageWidescreen --><div class="sc-card-fixed-photo-photo-crop-container ng-scope" ng-if="!isImageWidescreen" ng-style="{ 'height': '180px', 'background-image': 'url(https://lh3.googleusercontent.com/NdrIGoSYnwPlB59AsHl1GTxTFXl1ndK2BNo9XdWzkR4F6KJfVhkTRD3VXJWwJRt1THaupFfR2uR6VKTTKA=s320-c)' }" style="height: 180px; background-image: url(https://lh3.googleusercontent.com/NdrIGoSYnwPlB59AsHl1GTxTFXl1ndK2BNo9XdWzkR4F6KJfVhkTRD3VXJWwJRt1THaupFfR2uR6VKTTKA=s320-c);"></div><!-- end ngIf: !isImageWidescreen --></div><div class="sc-card-fixed-photo-text-container"><!-- ngIf: blocks.author --><img ng-if="blocks.author" class="photo-author ng-scope" ng-src="https://lh4.googleusercontent.com/-e2ihE1RW1yg/AAAAAAAAAAI/AAAAAAAAoz0/hNvOIkvPB3g/photo.jpg?sz=50" src="https://lh4.googleusercontent.com/-e2ihE1RW1yg/AAAAAAAAAAI/AAAAAAAAoz0/hNvOIkvPB3g/photo.jpg?sz=50"><!-- end ngIf: blocks.author --><div class="text-wrapper"><!-- ngIf: ::blocks.content.title --><h1 class="text-wrapper-title ng-binding ng-scope text-amount-4-rows-small" ng-if="::blocks.content.title" ng-bind-html="::blocks.content.title" ng-class="::blocks.content.responsiveTextClass">This card was created in "Ask a question"</h1><!-- end ngIf: ::blocks.content.title --><!-- ngIf: ::blocks.content.summary --><h2 class="text-wrapper-summary ng-binding ng-scope text-amount-4-rows-small" ng-if="::blocks.content.summary" ng-bind-html="::blocks.content.summary" ng-class="::blocks.content.responsiveTextClass">Just a test  #askquestions  #askquestions</h2><!-- end ngIf: ::blocks.content.summary --></div></div></a></div>
+</div>    
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-grid-card',
+
+      properties: {
+      }
+    });
+  })();
+  </script>
+</dom-module>

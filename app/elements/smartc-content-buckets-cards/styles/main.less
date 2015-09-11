@@ -1,0 +1,149 @@
+@import "../../../styles/less-lib/default-variables";
+@import "../../../styles/less-lib/mixins";
+
+#gridCanvasContainer {
+
+	padding: 27px 0px 24px 0px;
+}
+/*------------------------------------*\
+    $INDEX
+\*------------------------------------*/
+
+/**
+ * INDEX............................Welcome!
+ * CANVAS-FIXED-HEIGHT..................CANVAS FIXED HEIGHT STYLES
+ * CANVAS-LOADING.......................INCREMENTAL LOADING ANIMATION SPINNER
+ * MATERIAL-CANVAS-LOADING..............MATERIAL INCREMENTAL LOADING ANIMATION SPINNER
+ */
+
+
+
+
+
+
+
+/*------------------------------------*\
+    $CANVAS-FIXED-HEIGHT
+\*------------------------------------*/
+.sc-canvas-fixed-height{
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 27px 0 24px 0;
+
+    @media only screen and (min-width : 200px) and (max-width : 728px) {
+        padding: 27px 0 2% 0;
+    }
+
+    .sc-canvas-fixed-height-container{
+        margin: 0 auto;
+        width: 1376px;
+
+        @media only screen and (min-width : 200px) and (max-width : 728px) {
+            width: 98%;
+        }
+
+        @media only screen and (min-width : 728px) and (max-width : 1076px) {
+            width: 688px;
+        }
+
+        @media only screen and (min-width : 1076px) and (max-width : 1496px) {
+            width: 1032px;
+        }
+    }   
+
+        .sc-canvas-fixed-height-title{
+            margin: 0 12px 0 12px;
+            font: 300 normal 24px Roboto;
+            color: @sc-canvas-fixed-height-title-color;
+
+            @media only screen and (min-width : 200px) and (max-width : 728px) {
+                width: 98%;
+                margin: 0 auto 18px auto;
+            }
+        }
+
+
+        .sc-canvas-fixed-height-container{
+
+        }
+
+            .sc-card-fixed-height{
+                width: 320px;
+                height: 372px;
+                margin: 24px 12px 0 12px;
+                display: inline-block;
+                *display: inline;
+                *zoom:1;
+                vertical-align: top;
+
+                @media only screen and (min-width : 200px) and (max-width : 728px) {
+                    width: 100%;
+                    margin: 7px auto 0 auto;
+                }
+            }
+
+            &.double-first .sc-card-fixed-height:first-child {
+                width: 664px; /* 2 times 320px of width + 2 times 12px of margin */
+
+                @media only screen and (min-width : 200px) and (max-width : 728px) {
+                    width: 100%;
+                    margin: 7px auto 0 auto;
+                }
+            }
+}
+
+/*------------------------------------*\
+    $CANVAS-LOADING
+\*------------------------------------*/
+.sc-canvas-fixed-height-loading{
+    width: 100%;
+    height: 70px;
+
+    .sc-canvas-fixed-height-loader{
+        display: inline-block;
+        *display: inline;
+        *zoom:1;
+        width: 51px;
+        height: 51px;
+        background: url('@{sc-canvas-fixed-height-loader-background-image}') center no-repeat;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        margin-left: -25px;
+        margin-top: -25px;
+
+        * {
+            display: none;
+        }
+    }
+}
+
+
+
+/*------------------------------------*\
+    $MATERIAL-CANVAS-LOADING
+\*------------------------------------*/
+.header-material-closed,
+.header-material-open {
+    .sc-canvas-fixed-height-loading{
+
+        .sc-canvas-fixed-height-loader{
+            display: flex;
+            display: -webkit-flex;
+            height: 100%;
+            width: 51px;
+            height: 51px;
+            background: none;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin-left: -25px;
+            margin-top: -25px;
+
+            * {
+                display: block;
+            }
+        }
+    }    
+}

@@ -1,0 +1,107 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../smartc-grid-card/smartc-grid-card.html">
+
+<dom-module id="smartc-content-buckets-cards">
+  <link rel="import" type="css" href="styles/main.css">
+
+  <script src="../../bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      paper-spinner.color-primary {
+        --paper-spinner-layer-1-color: var(--accent-color);
+        --paper-spinner-layer-2-color: var(--accent-color);
+        --paper-spinner-layer-3-color: var(--accent-color);
+        --paper-spinner-layer-4-color: var(--accent-color);
+      }
+      
+      /*.sc-canvas-default-container {
+        background-color: var(--primary-background-color);
+      }
+
+      .sc-canvas-default-container {
+        color: var(--primary-text-color);
+      }      */
+    </style>
+
+<div class="sc-canvas-fixed-height" ng-style="::{ 'background-color': '{{backgroundColor}}' }" ng-class="::{'double-first': doubleFirst}">
+    <div class="sc-canvas-fixed-height-container" infinite-scroll="incrementalLoading()" infinite-scroll-distance="1">
+        <h2 class="sc-canvas-fixed-height-title" ng-style="::{ 'color': '{{titleColor}}' }">{{title}}</h2>
+          <div id="gridCanvasContainer" class="sc-canvas-masonry-container sc-canvas-fixed-height-container">
+
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card"></smartc-grid-card>
+
+        </div>
+          <div class="flex layout horizontal center-center">
+            <paper-spinner class="color-primary" active></paper-spinner>
+          </div>
+        <!--<div class="sc-canvas-fixed-height-loading" ng-hide="removeLoading">
+            <div class="sc-canvas-fixed-height-loader" layout="column" layout-align="center center">
+            	<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </div>-->
+    </div>
+</div>
+    <!--<div class="flex layout horizontal center-center">
+      <paper-spinner class="color-primary" active></paper-spinner>
+    </div>-->
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-content-buckets-cards',
+
+      properties: {
+      },
+      
+      ready: function () {
+        
+      },
+      
+      attached: function () {
+        
+        $(this.$.gridCanvasContainer).masonry({
+          // options...
+          itemSelector: '.canvas-container-card',
+        });
+      },
+    });
+  })();
+  </script>
+</dom-module>
