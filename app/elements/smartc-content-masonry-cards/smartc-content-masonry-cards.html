@@ -1,0 +1,225 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../smartc-grid-card/smartc-grid-card.html">
+
+<dom-module id="smartc-content-masonry-cards">
+  <link rel="import" type="css" href="styles/main.css">
+
+  <script src="../../bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      paper-spinner.color-primary {
+        --paper-spinner-layer-1-color: var(--accent-color);
+        --paper-spinner-layer-2-color: var(--accent-color);
+        --paper-spinner-layer-3-color: var(--accent-color);
+        --paper-spinner-layer-4-color: var(--accent-color);
+      }
+      
+      .grid-sizer,
+      .canvas-container-card { width: 320px; margin-bottom: 24px; }
+      .gutter-sizer { width: 24px; }
+
+      /*.sc-canvas-default-container {
+        background-color: var(--primary-background-color);
+      }
+
+      .sc-canvas-default-container {
+        color: var(--primary-text-color);
+      }      */
+    </style>
+
+    <div class="sc-canvas-fixed-height" ng-style="::{ 'background-color': '{{backgroundColor}}' }" ng-class="::{'double-first': doubleFirst}">
+      <div class="sc-canvas-fixed-height-container" infinite-scroll="incrementalLoading()" infinite-scroll-distance="1">
+        <h2 class="sc-canvas-fixed-height-title" ng-style="::{ 'color': '{{titleColor}}' }">Title</h2>
+        <div id="gridCanvasContainer" class="sc-canvas-masonry-container sc-canvas-fixed-height-container">
+              
+              <div class="grid-sizer"></div>
+              <div class="gutter-sizer"></div>
+              
+              <!--<template is="dom-repeat" repeat="{{card in cards}}">
+                <smartc-grid-card class="canvas-container-card" model="{{card}}"></smartc-grid-card>
+              </template>-->
+              
+              <!--<smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="text"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="attachments"></smartc-grid-card>
+              <smartc-grid-card class="canvas-container-card" card-type="photo"></smartc-grid-card>-->
+
+        </div>
+        <div class="flex layout horizontal center-center">
+          <paper-spinner class="color-primary" active></paper-spinner>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-content-masonry-cards',
+
+      properties: {
+        cards: {
+          type: Array,
+          notify: true,
+          value: [],
+          readOnly: true
+        }
+      },
+      
+      ready: function () {
+        
+      },
+      
+      attached: function () {
+
+        var $this = this;
+
+        window.setTimeout(function (){
+                    
+        // $this._loadLocalCards();        
+        }, 0);
+        
+        window.setTimeout(function (){
+          
+          $this._loadRemoteCards(); 
+        }, 0);
+      },
+      
+      _updateGrid: function () {
+
+          $(this.$.gridCanvasContainer).masonry({
+            // options...
+            itemSelector: '.canvas-container-card',
+            columnWidth: '.grid-sizer',
+            gutter: '.gutter-sizer',
+            // isResizeBound : false,
+            // transitionDuration : 0
+          });
+      },
+
+      _loadRemoteCards: function () {
+
+        var self = this;
+        
+      // $.getJSON("http://demo.dev.smartcanvas.com/brain/card/bucket/cards?locale=zz-zz&q=ciandt", function (data) {          
+        $.getJSON("http://localhost:9999/brain/card/bucket/cards?locale=zz-zz&q=people", function (data) {
+      
+          if (data.buckets) {
+            
+            data.buckets.forEach(function (bucket) {
+              
+              if (bucket.cards) {
+                
+                bucket.cards.forEach(function (card) {
+                  
+                  var dynamicEl = document.createElement("smartc-grid-card");
+                                    
+                  dynamicEl.classList.add("smartc-content-masonry-cards");
+                  dynamicEl.classList.add("canvas-container-card");
+                                    
+                  dynamicEl.model = card;
+                  
+                  self.$.gridCanvasContainer.appendChild(dynamicEl);                  
+                });
+              }            
+            });            
+          }
+          
+          self._updateGrid();
+        
+          console.log("...");
+        })
+        .done(function(jqXHR) {
+          console.log( "second success" );
+        })
+        .fail(function(jqXHR) {
+          console.log( "error" );
+        })
+        .always(function(jqXHR) {
+          console.log( "complete" );
+        });
+      },
+      
+      _loadLocalCards: function () {
+        
+        var self = this;
+        
+        this.push("cards", {
+          id: 1,
+          title: "Teste Json Card Title for Text !",
+          summary: "Teste Json Card Summary for Text",
+          "type": "text"
+        },
+        {
+          id: 2,
+          title: "Teste Json Card Title for Photo !",
+          summary: "Teste Json Card Summary for Photo",
+          "type": "photo"
+        },
+        {
+          id: 3,
+          title: "Teste Json Card Title for attachment !",
+          summary: "Teste Json Card Summary for attachment",
+          "type": "attachments"
+        });
+
+        this.cards.forEach(function (card) {
+                    
+          var dynamicEl = document.createElement("smartc-grid-card");
+          
+          dynamicEl.classList.add("canvas-container-card");
+          
+          dynamicEl.setAttribute("card-type", card.type);
+          dynamicEl.model = card;
+          
+          self.$.gridCanvasContainer.appendChild(dynamicEl);
+        });
+        
+        this._updateGrid();
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -1,0 +1,73 @@
+    <div class="smartc-grid-card sc-card-fixed-height ng-isolate-scope" ng-click="cardClicked($event, link)" ng-repeat="card in cards" double-first="doubleFirst" card="card" bucket="bucket" role="button" tabindex="0">
+      <!-- ngIf: ::contentCard --><!-- ngIf: ::attachmentCard --><!-- ngIf: ::photoCard -->
+      <div class="smartc-grid-card sc-card-fixed-height-photo ng-isolate-scope" ng-if="::photoCard" blocks="::blocks" double-first="::doubleFirst" card="::card" link="::link">
+        <a class="sc-card-fixed-photo-link" ng-href="/card/novo-projeto" href="/card/novo-projeto">
+          <div class="sc-card-fixed-photo-photo-wrapper">
+            <!-- ngIf: isImageWidescreen --><img class="sc-card-fixed-photo-photo-widescreen ng-scope" ng-src="https://lh3.googleusercontent.com/bX4AdErOFDyffGQbiBvR81Ru40Pz-yCLSWx3h6NWOISvNbt5xRqIOJPsRRvk0jiEHeJge_Avi2FPBr8w=s0" ng-if="isImageWidescreen" src="https://lh3.googleusercontent.com/bX4AdErOFDyffGQbiBvR81Ru40Pz-yCLSWx3h6NWOISvNbt5xRqIOJPsRRvk0jiEHeJge_Avi2FPBr8w=s0"><!-- end ngIf: isImageWidescreen --><!-- ngIf: !isImageWidescreen -->
+          </div>
+          <div class="sc-card-fixed-photo-text-container">
+            <!-- ngIf: blocks.author --><img ng-if="blocks.author" class="photo-author ng-scope" ng-src="https://lh4.googleusercontent.com/-e2ihE1RW1yg/AAAAAAAAAAI/AAAAAAABLyo/t5ONlrV1UxM/photo.jpg?sz=50" src="https://lh4.googleusercontent.com/-e2ihE1RW1yg/AAAAAAAAAAI/AAAAAAABLyo/t5ONlrV1UxM/photo.jpg?sz=50"><!-- end ngIf: blocks.author -->
+            <div class="text-wrapper">
+              <!-- ngIf: ::blocks.content.title -->
+              <h1 class="text-wrapper-title ng-binding ng-scope text-amount-3-rows-large" ng-if="::blocks.content.title" ng-bind-html="::blocks.content.title" ng-class="::blocks.content.responsiveTextClass">Novo projeto de desenvolvimento</h1>
+              <!-- end ngIf: ::blocks.content.title --><!-- ngIf: ::blocks.content.summary -->
+              <h2 class="text-wrapper-summary ng-binding ng-scope text-amount-3-rows-large" ng-if="::blocks.content.summary" ng-bind-html="::blocks.content.summary" ng-class="::blocks.content.responsiveTextClass">Não perca!</h2>
+              <!-- end ngIf: ::blocks.content.summary -->
+            </div>
+          </div>
+        </a>
+        <!-- ngIf: ::blocks.userActivity -->
+        <div class="sc-card-fixed-bottom ng-scope" ng-if="::blocks.userActivity">
+          <div class="sc-smart-user-activity-block ng-isolate-scope" block="::blocks.userActivity" card="::card" link="::link">
+            <ul class="bl-ua-list">
+              <!-- ngIf: visible.like -->
+              <li class="bl-ua-list-item ng-scope" ng-if="visible.like"><a class="bl-ua-list-link" ng-class="{active: block.like}" href="" ng-click="ripple($event); changeActiveClass('like', $event)" tabindex="0"><i class="bl-ua-list-icon icon-ic_thumb_up_48px"></i> <span class="bl-ua-list-count ng-binding hidden" ng-class="{ hidden: block.likeCounter == 0 || disableLikeCount }">0</span> <span class="bl-ua-list-ripple"></span></a></li>
+              <!-- end ngIf: visible.like --><!-- ngIf: visible.share --><!-- ngIf: visible.comment --><!-- ngIf: visible.pin --><!-- ngIf: visible.dislike --><!-- ngIf: visible.edit --><!-- ngIf: visible.delete --><!-- ngIf: visible.more -->
+              <li class="bl-ua-list-item ng-scope" ng-if="visible.more">
+                <a class="bl-ua-list-link" ng-class="{active: block.moreStatus}" href="" ng-click="ripple($event); changeActiveClass('moreStatus', $event)" tabindex="0"><i class="bl-ua-list-icon icon-ic_more_vert_48px"></i> <span class="bl-ua-list-count"></span> <span class="bl-ua-list-ripple"></span></a>
+                <div class="bl-ua-tooltip" ng-class="{active: block.moreStatus }">
+                  <ul class="bl-ua-tooltip-list">
+                    <!-- ngIf: tooltip.edit --><!-- ngIf: tooltip.like --><!-- ngIf: tooltip.pin -->
+                    <li class="bl-ua-tooltip-list-item ng-scope" ng-if="tooltip.pin">
+                      <a class="bl-ua-tooltip-list-link" ng-class="{active: block.pin}" ng-click="changeActiveClass('pin', $event)" tabindex="0">
+                        <p class="bl-ua-tooltip-list-text left">Pin</p>
+                        <p class="bl-ua-tooltip-list-text ng-binding">0</p>
+                      </a>
+                    </li>
+                    <!-- end ngIf: tooltip.pin --><!-- ngIf: tooltip.comment --><!-- ngIf: tooltip.dislike -->
+                    <li class="bl-ua-tooltip-list-item ng-scope" ng-if="tooltip.dislike">
+                      <a class="bl-ua-tooltip-list-link" ng-class="{active: block.dislike}" ng-click="changeActiveClass('dislike', $event)" tabindex="0">
+                        <p class="bl-ua-tooltip-list-text left">Dislike</p>
+                      </a>
+                    </li>
+                    <!-- end ngIf: tooltip.dislike --><!-- ngIf: tooltip.delete -->
+                  </ul>
+                  <!-- ngIf: tooltip.share -->
+                  <p class="bl-ua-tooltip-title ng-scope" ng-if="tooltip.share">Share</p>
+                  <!-- end ngIf: tooltip.share --><!-- ngIf: tooltip.share -->
+                  <ul class="bl-ua-tooltip-list bl-ua-tooltip-list-share ng-scope" ng-if="tooltip.share">
+                    <!-- ngIf: shareOptions.gplus -->
+                    <li class="bl-ua-tooltip-list-item ng-scope" ng-if="shareOptions.gplus">
+                      <a class="bl-ua-tooltip-list-link" ng-click="closeTooltip(); shareCounter('googleplus'); googleplusShare(card, cardOpen);" tabindex="0">
+                        <p class="bl-ua-tooltip-list-text left">Google+</p>
+                        <p class="bl-ua-tooltip-list-text ng-binding">0</p>
+                      </a>
+                    </li>
+                    <!-- end ngIf: shareOptions.gplus -->
+                    <li class="bl-ua-tooltip-list-item">
+                      <a class="bl-ua-tooltip-list-link" ng-click="closeTooltip(); shareCounter('email'); emailShare(card, cardOpen);" tabindex="0">
+                        <p class="bl-ua-tooltip-list-text left">E-Mail</p>
+                      </a>
+                    </li>
+                  </ul>
+                  <!-- end ngIf: tooltip.share -->
+                </div>
+              </li>
+              <!-- end ngIf: visible.more -->
+            </ul>
+          </div>
+        </div>
+        <!-- end ngIf: ::blocks.userActivity -->
+      </div>
+      <!-- end ngIf: ::photoCard --><!-- ngIf: ::personCardV2 --><!-- ngIf: ::personCard --><!-- ngIf: ::c2Card -->
+    </div>

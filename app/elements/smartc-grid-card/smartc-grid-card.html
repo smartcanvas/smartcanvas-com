@@ -9,20 +9,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="../smartc-grid-card-content-photo/smartc-grid-card-content-photo.html">
+<link rel="import" href="../smartc-grid-card-content-text/smartc-grid-card-content-text.html">
+<link rel="import" href="../smartc-grid-card-content-attachments/smartc-grid-card-content-attachments.html">
+
 
 <dom-module id="smartc-grid-card">
+  <!--<link rel="import" type="css" href="styles/main-old.css">-->
+  <!--<link rel="import" type="css" href="styles/main-old-copy.css">-->
   <link rel="import" type="css" href="styles/main.css">
   <template>
     <style>
       :host {
         display: block;
       }
+      
+      paper-material {
+        background: rgb(249, 249, 249) none repeat scroll 0% 0% / auto padding-box border-box;
+      }
+      
+      paper-menu-button {
+        padding: 0px;
+      }
     </style>
 
-<div class="sc-card-fixed-height" ng-click="cardClicked($event, link)">
-<div class="sc-card-fixed-height-photo ng-isolate-scope" ng-if="::photoCard" blocks="::blocks" double-first="::doubleFirst" card="::card" link="::link"><a class="sc-card-fixed-photo-link" ng-href="/card/this-cards-was-created-in-quot-ask-a-question-quot" href="/card/this-cards-was-created-in-quot-ask-a-question-quot"><div class="sc-card-fixed-photo-photo-wrapper"><!-- ngIf: isImageWidescreen --><!-- ngIf: !isImageWidescreen --><div class="sc-card-fixed-photo-photo-crop-container ng-scope" ng-if="!isImageWidescreen" ng-style="{ 'height': '180px', 'background-image': 'url(https://lh3.googleusercontent.com/NdrIGoSYnwPlB59AsHl1GTxTFXl1ndK2BNo9XdWzkR4F6KJfVhkTRD3VXJWwJRt1THaupFfR2uR6VKTTKA=s320-c)' }" style="height: 180px; background-image: url(https://lh3.googleusercontent.com/NdrIGoSYnwPlB59AsHl1GTxTFXl1ndK2BNo9XdWzkR4F6KJfVhkTRD3VXJWwJRt1THaupFfR2uR6VKTTKA=s320-c);"></div><!-- end ngIf: !isImageWidescreen --></div><div class="sc-card-fixed-photo-text-container"><!-- ngIf: blocks.author --><img ng-if="blocks.author" class="photo-author ng-scope" ng-src="https://lh4.googleusercontent.com/-e2ihE1RW1yg/AAAAAAAAAAI/AAAAAAAAoz0/hNvOIkvPB3g/photo.jpg?sz=50" src="https://lh4.googleusercontent.com/-e2ihE1RW1yg/AAAAAAAAAAI/AAAAAAAAoz0/hNvOIkvPB3g/photo.jpg?sz=50"><!-- end ngIf: blocks.author --><div class="text-wrapper"><!-- ngIf: ::blocks.content.title --><h1 class="text-wrapper-title ng-binding ng-scope text-amount-4-rows-small" ng-if="::blocks.content.title" ng-bind-html="::blocks.content.title" ng-class="::blocks.content.responsiveTextClass">This card was created in "Ask a question"</h1><!-- end ngIf: ::blocks.content.title --><!-- ngIf: ::blocks.content.summary --><h2 class="text-wrapper-summary ng-binding ng-scope text-amount-4-rows-small" ng-if="::blocks.content.summary" ng-bind-html="::blocks.content.summary" ng-class="::blocks.content.responsiveTextClass">Just a test  #askquestions  #askquestions</h2><!-- end ngIf: ::blocks.content.summary --></div></div></a></div>
-</div>    
-
+    <div class="card">
+      <paper-material>
+        <div id="cardContent" class="card-content">
+        </div>
+        <div class="card-actions flex layout horizontal end-justified">
+          <div>
+            <paper-icon-button icon="thumb-up" class="dropdown-trigger"></paper-icon-button>
+          </div>
+          <div>
+            <paper-menu-button>
+              <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+              <paper-menu class="dropdown-content">
+                <paper-item>Share</paper-item>
+                <paper-item>Settings</paper-item>
+                <paper-item>Help</paper-item>
+              </paper-menu>
+            </paper-menu-button>
+          </div>
+        </div>
+      </paper-material>
+    </div>
+    
   </template>
   <script>
   (function() {
@@ -32,7 +77,87 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'smartc-grid-card',
 
       properties: {
-      }
+        cardType: {
+          type: String,
+          value: "none"
+        }
+      },
+      
+      ready: function () {
+        
+      },
+      
+      attached: function () {
+        
+        var $this = this;
+        
+        this.model.getCardType = function(purpose){
+          var arrayBlocks = $.grep(this.blocks, function(i, c){
+              return (i.type == purpose);
+          });
+          
+          return (arrayBlocks.length) ? true : false;
+        };
+
+        this.model.getBlockByType = function(purpose){
+          var arrayBlocks = $.grep(this.blocks, function(i, c){
+              return (i.type == purpose);
+          });
+          
+          return (arrayBlocks.length) ? arrayBlocks[0] : null;
+        };
+
+        
+        var dynamicEl = null;
+        
+        if(this.model.canvasPreference === 'c2') {
+          
+            this.cardType = "c2Card";
+        } else if (this.model.blocks) {
+          
+          if (this.model.getCardType("photo")){
+            
+              this.cardType = "photo";
+          } else if (this.model.getCardType("youtube") || this.model.getCardType("vimeo") || this.model.getCardType("tableau") || this.model.getCardType("article") || this.model.getCardType("drive")) {
+              
+              this.cardType = "attachments";
+          // } else if (TOGGLES['person_card_v2'] && this.model.jsonExtendedData && this.model.jsonExtendedData.type === 'person') {
+          //     
+          //     this.cardType = "personCardV2";
+          } else if (this.model.getCardType("person")) {
+              
+              this.cardType = "person";
+          } else {
+              
+              this.cardType = "text";
+          }
+        } 
+        
+        if (this.cardType === "photo") {
+  
+          dynamicEl = document.createElement("smartc-grid-card-content-photo");
+        } else if (this.cardType === "text") {
+  
+          dynamicEl = document.createElement("smartc-grid-card-content-text");
+        } else if (this.cardType === "attachments") {
+  
+          dynamicEl = document.createElement("smartc-grid-card-content-attachments");
+        }
+        
+        if (dynamicEl != null) {
+          
+          this.model.objBlocks = {};
+          
+          this.model.blocks.forEach(function (block) {
+            
+            $this.model.objBlocks[block.type] = block;
+          });
+          
+          dynamicEl.model = this.model;
+  
+          this.$.cardContent.appendChild(dynamicEl);
+        }        
+      },
     });
   })();
   </script>

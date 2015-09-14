@@ -1,0 +1,84 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+
+<dom-module id="smartc-grid-card-content-attachments">
+  <link rel="import" type="css" href="styles/main.css">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <a href="/card/estacio-startup-77" id="newsc-A_1"></a>
+    <div id="newsc-DIV_2">
+      <!-- ngIf: blocks.author -->
+    
+      <div id="newsc-DIV_3">
+        <img src="{{model.objBlocks.author.authorImageURL}}" id="newsc-IMG_4" alt='' />
+      </div>
+      <!-- end ngIf: blocks.author -->
+    
+      <div id="newsc-DIV_5">
+        <!-- ngIf: ::blocks.content.title -->
+    
+        <h1 id="newsc-H1_6">{{model.objBlocks.content.title}}</h1>
+        <!-- end ngIf: ::blocks.content.title -->
+    
+        <!-- ngIf: ::(!blocks.content.title && blocks.content.summary) -->
+    
+        <!-- ngIf: ::(!blocks.content.title && !blocks.content.summary && blocks.author) -->
+    
+      </div>
+    </div>
+    <div id="newsc-DIV_7">
+      <!-- ngIf: isImageWidescreen -->
+    
+      <!-- ngIf: !isImageWidescreen -->
+    
+      <div id="newsc-DIV_8"></div>
+      <!--<div id="newsc-DIV_8" style="height: 171px; background-image: url({{model.objBlocks.article.imageURL}});"></div>-->
+
+      <!-- end ngIf: !isImageWidescreen -->
+    
+      <!-- ngIf: videoArrow -->
+    
+      <div id="newsc-DIV_9">
+        <!--<i id="newsc-I_10"></i>-->
+        <iron-icon icon="av:play-arrow" style="width: 100%; height: 100%; color: white"></iron-icon>
+      </div>
+      <!-- end ngIf: videoArrow -->
+    
+      <div id="newsc-DIV_11">
+        <div id="newsc-DIV_12">{{model.objBlocks.content.summary}}</div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-grid-card-content-attachments',
+
+      properties: {
+      },
+
+      attached: function () {
+        
+        this.$["newsc-DIV_8"].setAttribute("style", "height: 171px; background-image: url(" + this.model.objBlocks.article.imageURL + ");");
+      },
+            
+    });
+  })();
+  </script>
+</dom-module>

@@ -1,0 +1,66 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="smartc-grid-card-content-photo">
+  <link rel="import" type="css" href="styles/main.css">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <a href="/card/novo-projeto" id="newsc-A_1"></a>
+    <div id="newsc-DIV_2">
+      <!-- ngIf: isImageWidescreen -->
+      <!--<img src="{{model.objBlocks.photo.imageURL}}" id="newsc-IMG_3" alt='' />-->
+      <!-- end ngIf: isImageWidescreen -->
+      <div id="newsc-IMG_3" style="height: 180px; background-image: url(none);"></div>      
+      <!-- ngIf: !isImageWidescreen -->
+    
+    </div>
+    <div id="newsc-DIV_4">
+      <!-- ngIf: blocks.author -->
+    <img src="{{model.objBlocks.author.authorImageURL}}" id="newsc-IMG_5" alt='' />
+      <!-- end ngIf: blocks.author -->
+    
+      <div id="newsc-DIV_6">
+        <!-- ngIf: ::blocks.content.title -->
+    
+        <h1 id="newsc-H1_7">{{model.objBlocks.content.title}}</h1>
+        <!-- end ngIf: ::blocks.content.title -->
+    
+        <!-- ngIf: ::blocks.content.summary -->
+    
+        <h2 id="newsc-H2_8">{{model.objBlocks.content.summary}}</h2>
+        <!-- end ngIf: ::blocks.content.summary -->
+    
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'smartc-grid-card-content-photo',
+
+      properties: {
+      },
+      
+      attached: function () {
+        
+        this.$["newsc-IMG_3"].setAttribute("style", "height: 180px; background-image: url(" + this.model.objBlocks.photo.imageURL + ");");
+      },
+    });
+  })();
+  </script>
+</dom-module>
