@@ -8,22 +8,32 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../button-behavior.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<dom-module id="test-button">
-
+<dom-module id="smartc-open-card">
   <template>
-    <content></content>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>Hello from <span>{{foo}}</span></div>
   </template>
-
   <script>
-    Polymer({
-      is: 'test-button',
-      behaviors: [
-        Polymer.buttonBehavior
-      ]
-    });
-  </script>
+  (function() {
+    'use strict';
 
+    Polymer({
+      is: 'smartc-open-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'smartc-open-card',
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
 </dom-module>
