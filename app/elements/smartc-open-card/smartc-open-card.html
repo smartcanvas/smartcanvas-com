@@ -11,13 +11,205 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="smartc-open-card">
+  <link rel="import" type="css" href="styles/main.css">
   <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+    <div id="newsc-DIV_1">
+      <!-- ngIf: ::blocks.content.title -->
+    
+      <div id="newsc-DIV_2">
+        <!-- ngIf: ::blocks.photo -->
+    
+        <div id="newsc-DIV_3">
+        </div>
+        <!-- end ngIf: ::blocks.photo -->
+    
+        <div id="newsc-DIV_4">
+        </div>
+        <h1 id="newsc-H1_5">
+          5 years - Giuliano Gobbo Maranha
+        </h1>
+      </div>
+      <!-- end ngIf: ::blocks.content.title -->
+    
+      <div id="newsc-DIV_6">
+        <!-- ngIf: blocks.author -->
+    
+        <div id="newsc-DIV_7">
+          <a href="http://plus.google.com/114380283515281412229" id="newsc-A_8"></a>
+          <div id="newsc-DIV_9">
+            <img src="https://lh3.googleusercontent.com/-VhtAzLbpnK4/AAAAAAAAAAI/AAAAAAAABog/7Ozk7671C5c/photo.jpg?sz=80" id="newsc-IMG_10" alt='' />
+          </div>
+          <div id="newsc-DIV_11">
+            <p id="newsc-P_12">
+              Bianca Polonio Lima Polonio Lima
+            </p>
+            <p id="newsc-P_13">
+              September 4, 2015
+            </p>
+          </div>
+        </div>
+        <!-- end ngIf: blocks.author -->
+    
+      </div>
+      <div id="newsc-DIV_14">
+        <div id="newsc-DIV_15">
+          <!-- ngIf: blocks.content.summary -->
+    
+          <!-- ngIf: blocks.content.content -->
+    
+          <div id="newsc-DIV_16">
+            <br id="newsc-BR_17" />O <span id="newsc-SPAN_18"><span id="newsc-SPAN_19">+</span><a href="https://plus.google.com/107964551294860691056" id="newsc-A_20">Giuliano Gobbo Maranha</a></span> completou no dia 24/08, cinco anos de CI&amp;T!!<br id="newsc-BR_21" /><br id="newsc-BR_22" />A entrega foi feita com o coach <span id="newsc-SPAN_23"><span id="newsc-SPAN_24">+</span><a href="https://plus.google.com/113727377854190116382" id="newsc-A_25">Wilmer Miranda</a></span> e o time!<br id="newsc-BR_26" /><br id="newsc-BR_27" />Parabéns Giuliano!! Desejamos que as suas conquistas sejam tantas quanto os anos que estão por vir!! (=<br id="newsc-BR_28" /><br id="newsc-BR_29" />Abraços,<br id="newsc-BR_30" />Recognition Team<br id="newsc-BR_31" /> <a href="/award" id="newsc-A_32">#award</a> <a href="/awards" id="newsc-A_33">#awards</a> <a href="/premio" id="newsc-A_34">#premio</a> <a href="/premios" id="newsc-A_35">#premios</a> <a href="/5anos" id="newsc-A_36">#5anos</a> <a href="/5years" id="newsc-A_37">#5years</a> <a href="/recognition" id="newsc-A_38">#recognition</a> <a href="/reconhecimento" id="newsc-A_39">#reconhecimento</a>
+          </div>
+          <!-- end ngIf: blocks.content.content -->
+    
+          <!-- ngIf: blocks.photo -->
+    
+          <div id="newsc-DIV_40">
+            <!-- ngIf: !cardOpen -->
+    
+            <!-- ngIf: cardOpen -->
+    <img width="664" height="498" src="https://lh3.googleusercontent.com/U40ke2OfeVj76VXCma8Nos0wE1owqOv8fiqsIl_GMoIjEF9gqDL-JKfNCIxb28srW6Mv-JjkkZ-CXI4Q=s664-e7" id="newsc-IMG_41" alt='' />
+            <!-- end ngIf: cardOpen -->
+    
+          </div>
+          <!-- end ngIf: blocks.photo -->
+    
+          <!-- ngIf: blocks.youtube -->
+    
+          <!-- ngIf: blocks.vimeo -->
+    
+          <!-- ngIf: attachmentImageURL -->
+    
+          <!-- ngIf: features.isActive('card_comments') -->
+    
+          <section id="newsc-SECTION_42">
+            <a name="comment" id="newsc-A_43"></a>
+            <header id="newsc-HEADER_44">
+              <!-- ngIf: !allCommentsShown && hasMore -->
+    
+              <!-- ngIf: allCommentsShown && hasMore -->
+    
+              <!-- ngIf: !hasMore -->
+    <span id="newsc-SPAN_45">No comments</span>
+              <!-- end ngIf: !hasMore -->
+    
+            </header>
+            <ul id="newsc-UL_46">
+              <!-- ngRepeat: comment in comments -->
+    
+            </ul>
+            <footer id="newsc-FOOTER_47">
+              <form name="commentForm" id="newsc-FORM_48">
+                <div id="newsc-DIV_49">
+                  <div id="newsc-DIV_50">
+                    <div id="newsc-DIV_51">
+                      <img src="https://lh5.googleusercontent.com/-tlQ1LE9IdgI/AAAAAAAAAAI/AAAAAAAAA1Q/5Ypy_appsWw/photo.jpg?sz=50" alt="" id="newsc-IMG_52" />
+                    </div>
+                    <div id="newsc-DIV_53">
+                      <md id="newsc-MD-INPUT-CONTAINER_54">
+                        <label for="sc-comment-comment-body-input" id="newsc-LABEL_55">
+                          Write a comment
+                        </label>
+                        <textarea id="newsc-TEXTAREA_56" rows="1" tabindex="0">
+                        </textarea>
+                      </md>
+                      <div id="newsc-DIV_57">
+                        <button id="newsc-BUTTON_58">
+                          <span id="newsc-SPAN_59">Cancel</span>
+                        </button>
+                        <button disabled="disabled" id="newsc-BUTTON_60">
+                          <span id="newsc-SPAN_61">Comment</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </footer>
+          </section>
+          <!-- end ngIf: features.isActive('card_comments') -->
+    
+        </div>
+      </div>
+      <!-- ngIf: blocks.tableau -->
+    
+      <div id="newsc-DIV_62">
+        <ul id="newsc-UL_63">
+          <!-- ngIf: visible.like -->
+    
+          <li id="newsc-LI_64">
+            <a tabindex="0" id="newsc-A_65"><i id="newsc-I_66"></i> <span id="newsc-SPAN_67">0</span><span id="newsc-SPAN_68"></span></a>
+          </li>
+          <!-- end ngIf: visible.like -->
+    
+          <!-- ngIf: visible.share -->
+    
+          <li id="newsc-LI_69">
+            <a tabindex="0" id="newsc-A_70"><i id="newsc-I_71"></i> <span id="newsc-SPAN_72">0</span><span id="newsc-SPAN_73"></span></a>
+            <div id="newsc-DIV_74">
+              <p id="newsc-P_75">
+                Share
+              </p>
+              <ul id="newsc-UL_76">
+                <!-- ngIf: shareOptions.gplus -->
+    
+                <li id="newsc-LI_77">
+                  <a tabindex="0" id="newsc-A_78"></a>
+                  <p id="newsc-P_79">
+                    Google+
+                  </p>
+                  <p id="newsc-P_80">
+                    0
+                  </p>
+                </li>
+                <!-- end ngIf: shareOptions.gplus -->
+    
+                <li id="newsc-LI_81">
+                  <a tabindex="0" id="newsc-A_82"></a>
+                  <p id="newsc-P_83">
+                    E-Mail
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <!-- end ngIf: visible.share -->
+    
+          <!-- ngIf: visible.comment -->
+    
+          <li id="newsc-LI_84">
+            <a tabindex="0" id="newsc-A_85"><i id="newsc-I_86"></i> <span id="newsc-SPAN_87">0</span><span id="newsc-SPAN_88"></span></a>
+          </li>
+          <!-- end ngIf: visible.comment -->
+    
+          <!-- ngIf: visible.pin -->
+    
+          <li id="newsc-LI_89">
+            <a tabindex="0" id="newsc-A_90"><i id="newsc-I_91"></i> <span id="newsc-SPAN_92">0</span><span id="newsc-SPAN_93"></span></a>
+          </li>
+          <!-- end ngIf: visible.pin -->
+    
+          <!-- ngIf: visible.dislike -->
+    
+          <li id="newsc-LI_94">
+            <a tabindex="0" id="newsc-A_95"><i id="newsc-I_96"></i><span id="newsc-SPAN_97"></span><span id="newsc-SPAN_98"></span></a>
+          </li>
+          <!-- end ngIf: visible.dislike -->
+    
+          <!-- ngIf: visible.edit -->
+    
+          <!-- ngIf: visible.delete -->
+    
+          <!-- ngIf: visible.more -->
+    
+        </ul>
+      </div>
+    </div>
   </template>
   <script>
   (function() {
@@ -27,11 +219,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'smartc-open-card',
 
       properties: {
-        foo: {
-          type: String,
-          value: 'smartc-open-card',
-          notify: true
-        }
       }
     });
   })();

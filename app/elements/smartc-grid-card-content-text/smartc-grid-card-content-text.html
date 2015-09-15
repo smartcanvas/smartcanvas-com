@@ -18,33 +18,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <a href="/card/este-card-so-tem-texto" id="newsc-A_1">
-      <!-- ngIf: ::blocks.content.title -->
-      
-      <div id="newsc-DIV_2">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-        <div id="newsc-DIV_3">
-          <div id="newsc-DIV_4">
-            <h1 id="newsc-H1_5">{{model.objBlocks.content.title}}</h1>
-          </div>
-          <!-- ngIf: blocks.author -->
-          <img src="{{model.objBlocks.author.authorImageURL}}" id="newsc-IMG_6" alt='' />
-          <!-- end ngIf: blocks.author -->
-      
+    <!-- ngIf: ::blocks.content.title -->
+    <div id="newsc-DIV_2">
+      <div id="newsc-DIV_3">
+        <div id="newsc-DIV_4">
+          <h1 id="newsc-H1_5">[[model.objBlocks.content.title]]</h1>
         </div>
-        <!-- ngIf: ::blocks.content.summary -->
-      
-        <div id="newsc-DIV_7">
-          <div id="newsc-DIV_8">                                                    
-            <h2 id="newsc-H2_9">{{model.objBlocks.content.summary}}</h2>
-          </div>
-        </div>
-        <!-- end ngIf: ::blocks.content.summary -->
-      
+        <!-- ngIf: blocks.author -->
+        <img src$="[[model.objBlocks.author.authorImageURL]]" id="newsc-IMG_6" alt='' />
+        <!-- end ngIf: blocks.author -->
+    
       </div>
-      <!-- end ngIf: ::blocks.content.title -->
-      
-      <!-- ngIf: !blocks.content.title && blocks.content.summary -->
-    </a>
+      <!-- ngIf: ::blocks.content.summary -->
+    
+      <div id="newsc-DIV_7">
+        <div id="newsc-DIV_8">                                                    
+          <h2 id="newsc-H2_9">[[model.objBlocks.content.summary]]</h2>
+        </div>
+      </div>
+      <!-- end ngIf: ::blocks.content.summary -->
+    
+    </div>
+    <!-- end ngIf: ::blocks.content.title -->
+    <!-- ngIf: !blocks.content.title && blocks.content.summary -->
   </template>
   <script>
   (function() {

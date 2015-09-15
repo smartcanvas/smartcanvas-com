@@ -19,19 +19,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <a href="/card/estacio-startup-77" id="newsc-A_1"></a>
     <div id="newsc-DIV_2">
       <!-- ngIf: blocks.author -->
     
       <div id="newsc-DIV_3">
-        <img src="{{model.objBlocks.author.authorImageURL}}" id="newsc-IMG_4" alt='' />
+        <img src$="[[model.objBlocks.author.authorImageURL]]" id="newsc-IMG_4" alt='' />
       </div>
       <!-- end ngIf: blocks.author -->
     
       <div id="newsc-DIV_5">
         <!-- ngIf: ::blocks.content.title -->
     
-        <h1 id="newsc-H1_6">{{model.objBlocks.content.title}}</h1>
+        <h1 id="newsc-H1_6">[[model.objBlocks.content.title]]</h1>
         <!-- end ngIf: ::blocks.content.title -->
     
         <!-- ngIf: ::(!blocks.content.title && blocks.content.summary) -->
@@ -59,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- end ngIf: videoArrow -->
     
       <div id="newsc-DIV_11">
-        <div id="newsc-DIV_12">{{model.objBlocks.content.summary}}</div>
+        <div id="newsc-DIV_12">[[model.objBlocks.content.summary]]</div>
       </div>
     </div>
   </template>

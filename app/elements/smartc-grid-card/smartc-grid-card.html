@@ -48,8 +48,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <paper-material>
-        <div id="cardContent" class="card-content">
-        </div>
+        <a id="cardContent" href$="[[openCardUrl]]" class="card-content">
+        </a>
         <div class="card-actions flex layout horizontal end-justified">
           <div>
             <paper-icon-button icon="thumb-up" class="dropdown-trigger"></paper-icon-button>
@@ -80,7 +80,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cardType: {
           type: String,
           value: "none"
+        },
+        openCardUrl: {
+          type: String,
+          computed: 'generateOpenCardUrl(model)'
         }
+      },
+      
+      generateOpenCardUrl: function(model) {
+        return "/card/" + model.mnemonic;
       },
       
       ready: function () {

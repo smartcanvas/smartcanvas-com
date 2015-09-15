@@ -32,6 +32,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
       
+      paper-toolbar:unresolved {
+        display: none;
+      }
+      
       paper-toggle-button.toggle-pin {
         --paper-toggle-button-checked-bar-color:  var(--paper-light-blue-100);
         --paper-toggle-button-checked-button-color:  var(--paper-light-blue-700);
@@ -50,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="app-name" style="width: 300px">Polymer Starter Kit</div>
   
           <div id="scrollableTabsContainer" class="flex layout horizontal end-justified">
-            <paper-tabs id="scrollableTabs" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" scrollable>
+            <paper-tabs id="scrollableTabs" selected="{{selectedMenuTab}}" class="not-display-invisible-nav" style="opacity: 0" scrollable>
   
               <paper-tab>Highlights</paper-tab>
               <paper-tab>CI&T People</paper-tab>
@@ -140,6 +144,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       _adjustMenuSizeAndLocation: function() {
         
+        var $this = this;
+
         var tmpFinalWidth = $(this.$.scrollableTabs.$.tabsContent).width();
 
         if ((this.finalWidth == 0) || (tmpFinalWidth > this.finalWidth))
@@ -151,6 +157,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           $(this.$.scrollableTabs).find("paper-icon-button").hide();
           
           $(this.$.scrollableTabs).width(this.finalWidth);
+          
+          window.setTimeout(function () {
+            
+            $this.$.scrollableTabs.style.opacity = 1;
+          }, 0);
         }
         
         var tabsContainerWidth = this.$.scrollableTabs.parentElement.clientWidth;
@@ -159,14 +170,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
           //console.log("Need to break line !!! / tabsContainerWidth: " + tabsContainerWidth + "/ finalWidth: " + this.finalWidth);
 
+          this.$.scrollableTabs.style.opacity = 0;
           $(this.$.scrollableTabs).hide();
+
           this.$.mainToolbarSecndLine.removeAttribute("hidden");
         } else {
           
           //console.log("Need to put on header !!! / tabsContainerWidth: " + tabsContainerWidth + "/ finalWidth: " + this.finalWidth);
           
           this.$.mainToolbarSecndLine.setAttribute("hidden", null);
-          $(this.$.scrollableTabs).show();
+
+          window.setTimeout(function () {
+            $this.$.scrollableTabs.style.opacity = 1;
+            $($this.$.scrollableTabs).show();
+           }, 0);
         }
 
         this.$.scrollableTabs._onResize();

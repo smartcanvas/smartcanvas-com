@@ -15,26 +15,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
-    page('/', function () {
+    page('/', function (ctx) {
+      
       app.route = 'home';
+      
+      if (ctx.state.scrollTop) {
+        
+        $(ctx.state.scrollTopElementQuery).scrollTop(ctx.state.scrollTop);
+      }
     });
 
-    page('/users', function () {
-      app.route = 'users';
+//     page('/users', function () {
+//       app.route = 'users';
+//     });
+// 
+//     page('/users/:name', function (data) {
+//       app.route = 'user-info';
+//       app.params = data.params;
+//     });
+// 
+//     page('/contact', function () {
+//       app.route = 'contact';
+//     });
+
+    page('/card/:id', function (ctx) {
+      
+      app.route = 'card-open';
+      app.params = ctx.params;
     });
 
-    page('/users/:name', function (data) {
-      app.route = 'user-info';
-      app.params = data.params;
-    });
+    page.exit(function (ctx, next) {
+        
+      ctx.state.scrollTopElementQuery = "#mainContainer";
+      ctx.state.scrollTop = $(ctx.state.scrollTopElementQuery).scrollTop();
 
-    page('/contact', function () {
-      app.route = 'contact';
+      ctx.save();
+      
+      next();
     });
-
+    
     // add #! before urls
     page({
-      hashbang: true
+      hashbang: false
     });
 
   });

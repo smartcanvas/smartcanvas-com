@@ -44,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="sc-canvas-fixed-height" ng-style="::{ 'background-color': '{{backgroundColor}}' }" ng-class="::{'double-first': doubleFirst}">
       <div class="sc-canvas-fixed-height-container" infinite-scroll="incrementalLoading()" infinite-scroll-distance="1">
-        <h2 class="sc-canvas-fixed-height-title" ng-style="::{ 'color': '{{titleColor}}' }">Title</h2>
+        <!--<h2 class="sc-canvas-fixed-height-title" ng-style="::{ 'color': '{{titleColor}}' }">Title</h2>-->
         <div id="gridCanvasContainer" class="sc-canvas-masonry-container sc-canvas-fixed-height-container">
               
               <div class="grid-sizer"></div>
@@ -110,21 +110,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       ready: function () {
         
+        var $this = this;
+
+        window.addEventListener('load', function(e){
+
+          window.setTimeout(function (){
+                      
+          // $this._loadLocalCards();        
+          }, 0);
+          
+          window.setTimeout(function (){
+            
+            $this._loadRemoteCards(); 
+          }, 0);
+        });
       },
       
       attached: function () {
 
-        var $this = this;
-
-        window.setTimeout(function (){
-                    
-        // $this._loadLocalCards();        
-        }, 0);
-        
-        window.setTimeout(function (){
-          
-          $this._loadRemoteCards(); 
-        }, 0);
       },
       
       _updateGrid: function () {
